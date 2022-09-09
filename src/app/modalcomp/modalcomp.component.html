@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Payment Confirmation</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close"
+        (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">
+
+        </span>
+    </button>
+</div>
+<div class="modal-body">
+    <div>
+        <span>
+            <label>Note: Member you are trying to add already exists in the system. Please assign physician to this member.</label>
+        </span>
+        <div>
+            <label for="" style="margin-bottom: 5px;">Member Id : </label>
+            <input style="margin-bottom: 5px;" type="text" #phymemberid="ngModel" [ngModelOptions]="{standalone: true}" [(ngModel)]="assignphysician.MemberId" name="username"
+                           minlength="5" maxlength="20" required
+                           [ngClass]="{'invalid-textbox' :submitted && !phymemberid.valid }"/>&nbsp;&nbsp;
+     
+                <select style="margin-bottom: 5px;" class="fa" style="width: 78%;" [ngModelOptions]="{standalone: true}" 
+                    #selectphysician = "ngModel" name="physician" id="physician" [(ngModel)]='assignphysician.PhysicianId' required
+                    [ngClass]="{'invalid-textbox' :submitted && !selectphysician.valid }">
+                        <option value="1">John</option>
+                        <option value="2">Hari</option>
+                        <option value="3">Mittal</option>
+                        <option value="4">Patrick</option>
+                        
+                    </select>
+            
+        </div>
+        <div class="form-group" style="margin-bottom: 5px;">
+            <button class="btn" style="background-color: grey; color: white;" (click) = 'modalRef?.hide()'>Cancel</button> &nbsp;
+            <button class="btn btn-primary"  (click)="AssignPhysician(assignphysician)">Submit</button>
+        </div>
+    </div>
+</div>

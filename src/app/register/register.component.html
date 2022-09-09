@@ -1,0 +1,191 @@
+<div class="card outercard">
+    <div class="card-header heading" style="color: white;">
+        <h4>HealthCare Member Portal</h4>
+    </div>
+    <div class="card shadow p-3 mb-5 bg-white rounded innercard">
+        <div class="card-header" style="text-align: center;border-color: rgba(22, 182, 245, 0.932);">
+            <h4>User Registration</h4>
+        </div>
+        <div style="height: 15px;"></div>
+        <div class="cards-container">
+            <div class="cards-form">
+                <form class="form">
+                    <div class="loginfields">
+                        <div class="form-group">
+                             <label for="" style="margin-bottom: 5px;">User Name : </label>
+                            <br>
+                            <!-- <input type="text" placeholder="Please Enter Username" name="userName"> --> 
+                            <input type="text" style="margin-bottom: 5px;" #username="ngModel" [ngModelOptions]="{standalone: true}" [(ngModel)]="userdetails.UserName" name="username"
+                                    placeholder="UserName" minlength="5" required
+                                    [ngClass]="{'invalid-textbox' :submitted && !username.valid }"/>&nbsp;&nbsp;
+                                <span *ngIf="submitted && username.errors">
+                                    <label *ngIf="username.errors?.['required']" class="validation-message">User Name
+                                        is required.</label>
+                                    <label *ngIf="username.errors?.['minlength']" class="validation-message">Enter
+                                        atleast 5 characters.</label>
+                                </span>
+                        </div>
+                        <div class="form-group">
+                             <label style="margin-bottom: 5px;" for="">Password : </label>
+                            <br>
+                            <!-- <input type="password" placeholder="Please Enter Password" name="password"> -->
+                            <input style="margin-bottom: 5px;" type="password" #password="ngModel" [ngModelOptions]="{standalone: true}" [(ngModel)]="userdetails.Password" name="password"
+                                    placeholder="Password" required [pattern]="passwordpattern" maxlength="15"
+                                    minlength="8"
+                                    [ngClass]="{'invalid-textbox' :submitted && !password.valid }">&nbsp;&nbsp;
+                                <span *ngIf="submitted && password.errors">
+                                    <label *ngIf="password.errors?.['required']" class="validation-message">Password
+                                        is required.</label>
+
+                                   <label *ngIf="password.errors?.['pattern']" class="validation-message">Password
+                                        length should be minimum 8 and maximum 15 characters.<br>
+                                        It should contain at least 1 uppercase, 1 lowercase,  1 number and 1 special characters
+                                    </label>
+                                </span>
+                        </div>
+                        <div class="form-group,font-awesome">
+                            <label for="" style="margin-bottom: 5px;">UserType : </label>
+                            <br>
+                            <select style="margin-bottom: 5px;" class="fa" style="width: 78%;" [ngModelOptions]="{standalone: true}" 
+                            (change)="OpenMemberFields(userdetails.UserType)" #select = "ngModel" 
+                            name="usertype" id="usertype" [(ngModel)]='userdetails.UserType' required 
+                            [ngClass]="{'invalid-textbox' :submitted && !select.valid}">
+                            
+                                <option value=1>Admin</option>
+                                <option value=2>Member</option>
+                                
+                            </select>
+                            <span *ngIf="submitted && select.errors">
+                                <label *ngIf="select.errors?.['required']" class="validation-message">User Type
+                                    is required.</label>
+                            </span>
+                        </div>
+                        
+                            <div *ngIf="showMemberfields" class="form-group">
+                                <label for="" style="margin-bottom: 5px;">Name : </label>
+                               <br>
+                               <!-- <input type="text" placeholder="Please Enter Username" name="userName"> --> 
+                               <input style="margin-bottom: 5px;" type="text" #firstname="ngModel" [ngModelOptions]="{standalone: true}" [(ngModel)]="userdetails.FirstName" name="username"
+                                       placeholder="FirstName" minlength="5" maxlength="20" required
+                                       [ngClass]="{'invalid-textbox' :submitted && !firstname.valid }"/>&nbsp;&nbsp;
+                                   <span *ngIf="submitted && firstname.errors">
+                                       <label *ngIf="firstname.errors?.['required']" class="validation-message">First Name
+                                           is required.</label>
+                                       <label *ngIf="firstname.errors?.['minlength']" class="validation-message">Enter
+                                           atleast 5 characters.</label>
+                                   </span>
+    
+                                   <input style="margin-bottom: 5px;" type="text" #lastname="ngModel" [ngModelOptions]="{standalone: true}" [(ngModel)]="userdetails.LastName" name="username"
+                                       placeholder="LastName" minlength="5" maxlength="20" required
+                                       [ngClass]="{'invalid-textbox' :submitted && !lastname.valid }"/>&nbsp;&nbsp;
+                                   <span *ngIf="submitted && lastname.errors">
+                                       <label *ngIf="lastname.errors?.['required']" class="validation-message">Last Name
+                                           is required.</label>
+                                       <label *ngIf="lastname.errors?.['minlength']" class="validation-message">Enter
+                                           atleast 5 characters.</label>
+                                   </span>
+                           </div>
+                           <div *ngIf="showMemberfields" class="form-group">
+                            <label for="" style="margin-bottom: 5px;">DOB : </label>
+                           <br>
+                           <!-- <input type="text" placeholder="Please Enter Username" name="userName"> --> 
+                           <!-- <input type="text" #address="ngModel" [ngModel]="compaddress" name="username"
+                                   placeholder="UserName" minlength="4" required
+                                   [ngClass]="{'invalid-textbox' :submitted && !username.valid }"/> -->
+                                   <input style="margin-bottom: 5px;" type="date" id="birthday" [ngModelOptions]="{standalone: true}" name="birthday" 
+                                   #dob="ngModel" style="width: 78%;" [(ngModel)]="userdetails.DOB" [max]="todaydate" required 
+                                   [ngClass]="{'invalid-textbox' :submitted && !dob.valid }">
+                                   
+                                   &nbsp;&nbsp;
+                               <span *ngIf="submitted && dob.errors">
+                                   <label *ngIf="dob.errors?.['required']" class="validation-message">User Name
+                                       is required.</label>
+                                   <!-- <label *ngIf="dob.errors?.['maxlength']" class="validation-message">Length should not exceed 100 characters.</label> -->
+                               </span>
+                       
+    
+                           
+                        </div>
+                           <div *ngIf="showMemberfields" class="form-group">
+                            <label for="" style="margin-bottom: 5px;">Address : </label>
+                           <br>
+                           <!-- <input type="text" placeholder="Please Enter Username" name="userName"> --> 
+                           <!-- <input type="text" #address="ngModel" [ngModel]="compaddress" name="username"
+                                   placeholder="UserName" minlength="4" required
+                                   [ngClass]="{'invalid-textbox' :submitted && !username.valid }"/> -->
+                                   <textarea style="margin-bottom: 5px;" style="width: 78%;" [ngModelOptions]="{standalone: true}" maxlength="100" 
+                                   #personaladdress="ngModel" [(ngModel)]="userdetails.Address" required 
+                                   [ngClass]="{'invalid-textbox' :submitted && !personaladdress.valid }"></textarea>
+                                   &nbsp;&nbsp;
+                               <span *ngIf="submitted && personaladdress.errors">
+                                   <label *ngIf="personaladdress.errors?.['required']" class="validation-message">Address
+                                       is required.</label>
+                                   <label *ngIf="personaladdress.errors?.['maxlength']" class="validation-message">Length should not exceed 100 characters.</label>
+                               </span>
+                    
+                        </div>
+                        <div *ngIf="showMemberfields" class="form-group,font-awesome">
+                            <label for="" style="margin-bottom: 5px;">State : </label>
+                            <br>
+                            <select style="margin-bottom: 5px;" class="fa" style="width: 78%;" [ngModelOptions]="{standalone: true}" 
+                            #selectstate = "ngModel" name="state" id="state" [(ngModel)]='userdetails.State' required
+                            [ngClass]="{'invalid-textbox' :submitted && !selectstate.valid }">
+                                <option value="1">Andhra Pradesh</option>
+                                <option value="2">Telangana</option>
+                                <option value="3">Karnataka</option>
+                                <option value="4">TamilNadu</option>
+                                
+                            </select>
+                            <span *ngIf="submitted && selectstate.errors">
+                                <label *ngIf="selectstate.errors?.['required']" class="validation-message">State
+                                    is required.</label>
+                            </span>
+                        </div>
+                        <div *ngIf="showMemberfields" class="form-group">
+                            <label for="" style="margin-bottom: 5px;">Email : </label>
+                           <br>
+                           <!-- <input type="text" placeholder="Please Enter Username" name="userName"> --> 
+                           <input style="margin-bottom: 5px;" type="text" #email="ngModel" [ngModelOptions]="{standalone: true}" [(ngModel)]="userdetails.Email" name="username"
+                                   placeholder="Enter Email" [pattern]="emailpattern" minlength="5" maxlength="20" required
+                                   [ngClass]="{'invalid-textbox' :submitted && !email.valid }"/>&nbsp;&nbsp;
+                               <span *ngIf="submitted && email.errors">
+                                   <label *ngIf="email.errors?.['required']" class="validation-message">Email
+                                       is required.</label>
+                                   <label *ngIf="email.errors?.['minlength']" class="validation-message">Enter
+                                       atleast 5 characters.</label>
+                                    <label *ngIf="email.errors?.['pattern']" class="validation-message">Entered Email is not valid
+                                    </label>
+                               </span>
+                               </div>
+                        
+                        <div style="height: 10px;"></div>
+                        <div class="form-group">
+                            <button class="btn" style="background-color: grey; color: white;" (click) = "Cancel()">Cancel</button> &nbsp;
+                            <button class="btn btn-primary"  (click)="onSubmit()">Register</button>
+                        </div>
+                    </div>
+                    
+                </form>
+                <hr>
+                <h6 class="loginfields">Already have an account?</h6>
+                <div class="form-group loginfields">
+                    <button class="btn btn-primary" (click) = "Signin()">Sign In</button>
+                </div>
+
+
+
+           </div>
+            <!-- <div class="cards-grid">
+        <div class="card-row" *ngFor="let card of cards">
+          <div class="card-row-details" (click)="populateForm(card)">
+            <span>{{ card.cardholderName }}</span>
+            <span>{{ card.cardNumber }}</span>
+          </div>
+          <div class="card-row-action">
+            <a (click)="deleteCard(card.id)"><i class="fa-solid fa-trash"></i></a>
+          </div>
+        </div>
+      </div> -->
+        </div>
+    </div>
+</div>

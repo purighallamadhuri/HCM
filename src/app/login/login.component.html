@@ -1,0 +1,94 @@
+<div class="card outercard">
+    <div class="card-header heading" style="color: white; ">
+        <h5>HealthCare Member Portal</h5>
+    </div>
+    <div class="card shadow p-3 mb-5 bg-white rounded innercard">
+        <div class="card-header" style="text-align: center; border-color: rgba(22, 182, 245, 0.932);">
+            <h4>Sign In</h4>
+        </div>
+        <div style="height: 15px;"></div>
+        <div class="cards-container">
+            <div class="cards-form">
+                <!-- <form #form="ngForm" (ngSubmit)="onSubmit()">
+                    <div class="loginfields">
+                        <div class="form-group">
+                            <label for="">User Name : </label>
+                            <input type="text" placeholder="Please Enter Username" name="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Password : </label>
+                            <input type="text" placeholder="Please Enter Password" name="Password">
+                        </div>
+                        <div style="height: 10px;"></div>
+                        <div class="form-group">
+                            <button class="btn btn-primary">Sign In</button>
+                        </div>
+                    </div>
+                </form> -->
+
+                <form class="form" (ngSubmit)="onSubmit()">
+                    <div class="loginfields">
+                        <div class="form-group">
+                            <label style="font-size: 15px; margin-bottom: 5px;">User Name :</label>&nbsp;
+                            <div>
+                                <input style="margin-bottom: 5px;" type="text" #username="ngModel" [(ngModel)]="loggedinuser.UserName" name="username"
+                                    placeholder="UserName" minlength="4" required
+                                    [ngClass]="{'invalid-textbox' :submitted && !username.valid }"/>&nbsp;&nbsp;
+                                <span *ngIf="submitted && username.errors">
+                                    <label *ngIf="username.errors?.['required']" class="validation-message">User Name
+                                        is required.</label>
+                                    <label *ngIf="username.errors?.['minlength']" class="validation-message">Enter
+                                        atleast 4 characters.</label>
+                                </span>
+                            </div>
+
+                       </div>
+                        <div class="form-group">
+                            <label for="" style="font-size: 15px; margin-bottom: 5px;">Password : </label>
+                            <br>
+                            <div>
+                                <input style="margin-bottom: 5px;" type="password" #password="ngModel" [(ngModel)]="loggedinuser.Password" name="password"
+                                    placeholder="Password" required maxlength="15"
+                                    minlength="8"
+                                    [ngClass]="{'invalid-textbox' :submitted && !password.valid }"/>&nbsp;&nbsp;
+                                <span *ngIf="submitted && password.errors">
+                                    <label *ngIf="password.errors?.['required']" class="validation-message">Password
+                                        is required.</label>
+
+                                   <!-- <label *ngIf="password.errors?.['pattern']" class="validation-message">Password
+                                        length should be minimum 8 and maximum 15 characters.It should contain at least
+                                        1 uppercase letter, 1 lowercase
+                                        letter and 1 number
+                                    </label> -->
+                                </span>
+                            </div>
+                        </div>
+                        <div style="height: 10px;"></div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">SIGN IN</button>
+                        </div>
+                    </div>
+                </form>
+                <hr>
+                <h6 class="loginfields">New User?</h6>
+                <div class="form-group loginfields">
+                    <button class="btn btn-primary" (click) = "Register()">Register</button>
+                </div>
+
+
+
+           </div>
+            <!-- <div class="cards-grid">
+        <div class="card-row" *ngFor="let card of cards">
+          <div class="card-row-details" (click)="populateForm(card)">
+            <span>{{ card.cardholderName }}</span>
+            <span>{{ card.cardNumber }}</span>
+          </div>
+          <div class="card-row-action">
+            <a (click)="deleteCard(card.id)"><i class="fa-solid fa-trash"></i></a>
+          </div>
+        </div>
+      </div> -->
+        </div>
+    </div>
+</div>
