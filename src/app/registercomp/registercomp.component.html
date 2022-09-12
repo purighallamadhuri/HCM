@@ -1,0 +1,170 @@
+<div class="card shadow p-3 mb-5 bg-white rounded innercard">
+    <div class="card-header" style="text-align: center;border-color: rgba(22, 182, 245, 0.932);">
+        <h4>User Registration</h4>
+    </div>
+    <div style="height: 15px;"></div>
+    <div class="cards-container">
+        <div class="cards-form">
+            <form class="form" [formGroup]="register">
+                <div *ngIf="showloginflds" class="loginfields">
+                    <div class="mb-2">
+                        <label>User Name :</label>
+                        <input type="text" class="form-control" placeholder="UserName"
+                            [(ngModel)]="userdetails.UserName" formControlName="UserName">
+                        <div *ngIf="submitted && register.get('UserName')?.hasError('required')"
+                            class="validation-message">
+                            User Name is required.
+                        </div>
+                        <div *ngIf="submitted && register.get('UserName')?.hasError('minlength')"
+                            class="validation-message">
+                            Enter atleast 5 characters.
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label>Password :</label>
+                        <input type="text" class="form-control" placeholder="Password"
+                            [(ngModel)]="userdetails.Password" formControlName="password">
+                        <div *ngIf="submitted && register.get('password')?.hasError('required')"
+                            class="validation-message">
+                            password is required.
+                        </div>
+                        <div *ngIf="submitted && register.get('password')?.hasError('pattern')"
+                            class="validation-message">
+                            Password
+                            length should be minimum 8 and maximum 15 characters.<br>
+                            It should contain at least 1 uppercase, 1 lowercase, 1 number and 1 special characters
+                        </div>
+                    </div>
+
+
+                    <div class="mb-2">
+                        <label>UserType : </label>
+                        <select class="form-control" formControlName="UserType" [(ngModel)]="userdetails.UserType">
+                            <option value=''>Select</option>
+                            <option value="1">Admin</option>
+                            <option value="2">Member</option>
+                        </select>
+                        <div *ngIf="submitted && register.get('UserType')?.hasError('required')"
+                            class="validation-message">
+                            UserType is required.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn" style="background-color: grey; color: white;"
+                            (click)="Cancel()">Cancel</button>
+                        &nbsp;
+                        <button class="btn btn-primary" (click)="onSubmit()">Register</button>
+                    </div>
+                    <hr>
+                    <h6 class="loginfields">Already have an account?</h6>
+                    <div class="form-group loginfields">
+                        <button class="btn btn-primary" (click)="Signin()">Sign In</button>
+                    </div>
+                </div>
+            </form>
+            <form class="form" [formGroup]="member">
+                <div *ngIf="showmemmfield">
+                    <div class="mb-2">
+                        <label>First Name :</label>
+                        <input type="text" class="form-control" placeholder="First Name" formControlName="firstname"
+                            [(ngModel)]="userdetails.FirstName">
+                        <div *ngIf="submitted && member.get('firstname')?.hasError('required')"
+                            class="validation-message">
+                            First Name is required.
+                        </div>
+                        <div *ngIf="submitted && member.get('firstname')?.hasError('minlength')"
+                            class="validation-message">
+                            Enter atleast 5 characters.
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label>Last Name :</label>
+                        <input type="text" class="form-control" placeholder="Last Name" formControlName="lastname"
+                            [(ngModel)]="userdetails.LastName">
+                        <div *ngIf="submitted && member.get('lastname')?.hasError('required')"
+                            class="validation-message">
+                            Last Name is required.
+                        </div>
+                        <div *ngIf="submitted && member.get('lastname')?.hasError('minlength')"
+                            class="validation-message">
+                            Enter atleast 5 characters.
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label>DOB :</label>
+                        <input type="date" class="form-control" [max]="todaydate" formControlName="dob"
+                            [(ngModel)]="userdetails.DOB">
+                        <div *ngIf="submitted && member.get('dob')?.hasError('required')" class="validation-message">
+                            DOB is required.
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label>Email :</label>
+                        <input type="text" class="form-control" placeholder="Email" formControlName="Email"
+                            [(ngModel)]="userdetails.Email">
+                        <div *ngIf="submitted && member.get('Email')?.hasError('required')" class="validation-message">
+                            Email is required.
+                        </div>
+                        <div *ngIf="submitted && member.get('Email')?.hasError('pattern')" class="validation-message">
+                            Entered Email is not valid.
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label>Address :</label>
+                        <textarea type="text" class="form-control" placeholder="Address" formControlName="address"
+                            [(ngModel)]="userdetails.Address"></textarea>
+                        <div *ngIf="submitted && member.get('address')?.hasError('required')"
+                            class="validation-message">
+                            Address is required.
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label>State : </label>
+                        <select class="form-control" formControlName="state" [(ngModel)]="userdetails.State">
+                            <option value=''>Select</option>
+                            <option value="1">Andhra Pradesh</option>
+                            <option value="2">Telangana</option>
+                            <option value="3">Karnataka</option>
+                            <option value="4">TamilNadu</option>
+                        </select>
+                        <div *ngIf="submitted && member.get('state')?.hasError('required')" class="validation-message">
+                            State is required.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn" style="background-color: grey; color: white;"
+                            (click)="Cancel()">Cancel</button>
+                        &nbsp;
+                        <button class="btn btn-primary" (click)="Save()">Save</button>
+                    </div>
+                </div>
+
+                <div style="height: 10px;"></div>
+
+
+
+            </form>
+
+
+
+
+        </div>
+        <!-- <div class="cards-grid">
+        <div class="card-row" *ngFor="let card of cards">
+          <div class="card-row-details" (click)="populateForm(card)">
+            <span>{{ card.cardholderName }}</span>
+            <span>{{ card.cardNumber }}</span>
+          </div>
+          <div class="card-row-action">
+            <a (click)="deleteCard(card.id)"><i class="fa-solid fa-trash"></i></a>
+          </div>
+        </div>
+      </div> -->
+    </div>
+</div>

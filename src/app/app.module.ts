@@ -9,21 +9,24 @@ import { RouterModule} from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AddmemberComponent } from './addmember/addmember.component';
-import { MembercompComponent } from './membercomp/membercomp.component';
+import { MemberclaimComponent } from './memberclaim/memberclaim.component';
 import { DatePipe} from "@angular/common";
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { ModalcompComponent } from './modalcomp/modalcomp.component';
+import { RegistercompComponent } from './registercomp/registercomp.component';
+import { AssignphysicianComponent } from './assignphysician/assignphysician.component';
+import { SearchmemberComponent } from './searchmember/searchmember.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
     AddmemberComponent,
-    MembercompComponent,
-    ModalcompComponent
+    MemberclaimComponent,
+    RegistercompComponent,
+    AssignphysicianComponent,
+    SearchmemberComponent
   ],
   imports: [
     BrowserModule,
@@ -37,11 +40,12 @@ import { ModalcompComponent } from './modalcomp/modalcomp.component';
     RouterModule.forRoot([
       {path:'',component : LoginComponent},
        {path:'login',component : LoginComponent},
-       {path:'register',component : RegisterComponent},
+       {path:'oldreg',component : RegisterComponent},
        {path:'addmember',component : AddmemberComponent},
-       {path:'member',component : MembercompComponent},
-      // {path:'payment',component : PaymentCompComponent},
-      // {path:'addbook',component : AddbooksCompComponent}
+       {path:'memberclaim/:memberid',component : MemberclaimComponent},
+       {path:'register',component : RegistercompComponent},
+       {path:'assign',component : AssignphysicianComponent},
+       {path:'searchmember',component : SearchmemberComponent}
     ]),
   ],
    providers: [{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService,HttpClientModule,DatePipe],

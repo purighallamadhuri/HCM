@@ -1,7 +1,4 @@
-<div class="card outercard">
-    <div class="card-header heading" style="color: white; ">
-        <h5>HealthCare Member Portal</h5>
-    </div>
+
     <div class="card shadow p-3 mb-5 bg-white rounded innercard">
         <div class="card-header" style="text-align: center; border-color: rgba(22, 182, 245, 0.932);">
             <h4>Sign In</h4>
@@ -31,9 +28,9 @@
                         <div class="form-group">
                             <label style="font-size: 15px; margin-bottom: 5px;">User Name :</label>&nbsp;
                             <div>
-                                <input style="margin-bottom: 5px;" type="text" #username="ngModel" [(ngModel)]="loggedinuser.UserName" name="username"
+                                <input style="margin-bottom: 5px;" class="form-control" type="text" #username="ngModel" [(ngModel)]="loggedinuser.UserName" name="username"
                                     placeholder="UserName" minlength="4" required
-                                    [ngClass]="{'invalid-textbox' :submitted && !username.valid }"/>&nbsp;&nbsp;
+                                    [ngClass]="{'invalid-textbox' :submitted && !username.valid }"/>
                                 <span *ngIf="submitted && username.errors">
                                     <label *ngIf="username.errors?.['required']" class="validation-message">User Name
                                         is required.</label>
@@ -45,12 +42,12 @@
                        </div>
                         <div class="form-group">
                             <label for="" style="font-size: 15px; margin-bottom: 5px;">Password : </label>
-                            <br>
+                           
                             <div>
-                                <input style="margin-bottom: 5px;" type="password" #password="ngModel" [(ngModel)]="loggedinuser.Password" name="password"
+                                <input style="margin-bottom: 5px;" class="form-control" type="password" #password="ngModel" [(ngModel)]="loggedinuser.Password" name="password"
                                     placeholder="Password" required maxlength="15"
                                     minlength="8"
-                                    [ngClass]="{'invalid-textbox' :submitted && !password.valid }"/>&nbsp;&nbsp;
+                                    [ngClass]="{'invalid-textbox' :submitted && !password.valid }"/>
                                 <span *ngIf="submitted && password.errors">
                                     <label *ngIf="password.errors?.['required']" class="validation-message">Password
                                         is required.</label>
@@ -91,4 +88,3 @@
       </div> -->
         </div>
     </div>
-</div>

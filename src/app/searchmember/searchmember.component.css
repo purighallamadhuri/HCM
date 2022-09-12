@@ -1,0 +1,44 @@
+.heading
+{
+    background-color: rgba(22, 182, 245, 0.932);
+    text-align: center;
+    font-size: 12px;
+}
+
+  .innercard
+  {
+    width: 900px;
+    height: auto;
+    margin-left:200px;
+    margin-top: 105px;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  .outercard
+  {
+    width: auto;
+    height: auto;
+    margin-left:400px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background-color: rgb(247, 243, 243);
+  }
+  .loginfields
+  {
+    margin-left: 25px;
+  }
+  .validation-message{
+    color: red;
+    font-size: small;
+  }
+  .inputfield{
+    width: 300px;
+    text-align: center;
+    border-radius: 8px;
+    border-color: lightgray;
+    height: 35px;
+    margin-left: 10px;
+  }
+  table, th, td {
+    border: 1px solid rgba(22, 182, 245, 0.932);
+  }

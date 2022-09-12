@@ -108,7 +108,7 @@ OpenMemberFields(value:any){
   }
 }
 Signin(){
-  this.router.navigate(['login']);
+  this.router.navigate(['login'])
 }
 Cancel(){
   this.submitted=false;

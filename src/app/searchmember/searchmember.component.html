@@ -1,0 +1,136 @@
+<div>
+<div class="card shadow p-3 mb-5 bg-white rounded innercard">
+    <div class="card-header" style="text-align: center;border-color: rgba(22, 182, 245, 0.932);">
+        <h4>Member Search</h4>
+    </div>
+    <div style="height: 15px;"></div>
+    <div class="cards-container">
+        <div class="cards-form">
+            <!-- [formGroup]="search" -->
+            <form class="form" >
+                <div class="searchfields">
+                    <div class="mb-2">
+                        <label>Member Id :</label>
+                        <input type="text" class="inputfield" [ngModelOptions]="{standalone: true}" style="width: 300px; text-align: center;" placeholder="Enter MemberId"
+                            [(ngModel)]="searchmembers.MemberId">
+                    </div>
+                    <div class="mb-2">
+                        <label>First Name :</label>
+                        <input type="text" class="inputfield" [ngModelOptions]="{standalone: true}" style="width: 300px;text-align: center;" placeholder="Enter First name"
+                            [(ngModel)]="searchmembers.FirstName">
+                        <!-- <div *ngIf="submitted && !notTheSame"
+                            class="validation-message">
+                            Both First and Last names are required.
+                        </div> -->
+                    </div>
+                    <div class="mb-2">
+                        <label>Last Name :</label>
+                        <input type="text" class="inputfield" [ngModelOptions]="{standalone: true}" style="width: 300px;text-align: center;" placeholder="Enter Last Name"
+                            [(ngModel)]="searchmembers.LastName">
+                        <!-- <div *ngIf="submitted && !notTheSame"
+                            class="validation-message">
+                            Both First and Last names are required.
+                        </div> -->
+                    </div>
+                    <div class="mb-2" *ngIf="PhysicianDetails.length > 0">
+                        <label>Physician : </label>
+                        <select class="inputfield" [ngModelOptions]="{standalone: true}" style="margin-left: 20px;" id="physician" name="physician" 
+                         [(ngModel)]="searchmembers.PhysicianId">
+                            <option *ngFor="let p of PhysicianDetails" value={{p.physicianId}}>
+                                {{p.physicianName}}
+                            </option>
+                            <!-- <option value="1">John</option>
+                            <option value="2">Hari</option>
+                            <option value="3">Mittal</option>
+                            <option value="4">Patrick</option>
+                            <option value="5">Mark</option>
+                            <option value="6">Jessica</option>
+                            <option value="7">Mary</option>
+                            <option value="8">Stacy</option> -->
+                        </select>
+                    </div>
+                    <div class="mb-2">
+                        <label>Claim Id :</label>
+  
+                        <input type="text" class="inputfield" [ngModelOptions]="{standalone: true}" style="margin-left: 30px;" placeholder="Enter ClaimId"
+                            [(ngModel)]="searchmembers.ClaimId">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn" style="background-color: grey; color: white;"
+                            (click)="Cancel()">Cancel</button>
+                        &nbsp;
+                        <button class="btn btn-primary" (click)="onSubmit()">Register</button>
+                    </div>
+                    </div>
+                    </form>
+                    
+        </div>
+    </div>
+    <div>
+        <br>
+        <div style="width:100%; align-items: center;">
+
+            <!-- <table style="border: 2px solid rgba(22, 182, 245, 0.932);" *ngIf="searchMemberResult.length">
+                <thead>
+                    <tr>
+                        <th> Member ID </th>
+                        <th> First Name </th>
+                        <th> Last Name </th>
+                        <th> Assigned Physician </th>
+                        <th> Claim ID </th>
+                        <th> Claim Amount </th>
+                        <th> Submitted Date </th>
+                        <th> Actions </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let search of searchMemberResult">
+                        
+                        <td>{{search.MemberId}}</td>
+        
+                        <td>{{search.FirstName}}</td>
+                        <td>{{search.LastName}}</td>
+                        <td>{{search.PhysicianName}}</td>
+                        <td>{{search.ClaimId}}</td>
+                        <td>{{search.ClaimAmount}}</td>
+                        <td>{{search.ClaimDate}}</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table> -->
+
+            <table class="table-responsive" style="width:100%;border: 2px solid rgba(22, 182, 245, 0.932);" *ngIf="searchMemberResult?.length > 0">
+                <tr>
+                    <th> Member ID </th>
+                    <th> First Name </th>
+                    <th> Last Name </th>
+                    <th> Assigned Physician </th>
+                    <th> Claim ID </th>
+                    <th> Claim Amount </th>
+                    <th> Submitted Date </th>
+                    <th> Actions </th>
+                </tr>
+               
+                    <tr *ngFor="let search of searchMemberResult">
+                        
+                        <td>{{search.MemberId}}</td>
+        
+                        <td>{{search.FirstName}}</td>
+                        <td>{{search.LastName}}</td>
+                        <td>{{search.PhysicianName}}</td>
+                        <td>{{search.ClaimId}}</td>
+                        <td>{{search.ClaimAmount}}</td>
+                        <td>{{search.ClaimDate}}</td>
+                        <td>
+                            <button class="btn btn-primary" [routerLink] = "['/memberclaim',search.MemberId]">
+                            Submit Claim
+                            </button>
+                        </td>
+                    </tr>
+                
+              </table>
+        </div>
+    </div>
+</div>
+
+</div>

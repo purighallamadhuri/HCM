@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
      localStorage.setItem('userrole',this.tokenPayload.User_Type);
      localStorage.setItem('memberid',this.tokenPayload.sub);
      localStorage.setItem('UserName',this.tokenPayload.UserName);
+     this.memberService.updateSite.next(true);
     // localStorage.setItem('username',this.username)
   
     // console.log(localStorage.getItem('userrole'))
@@ -58,7 +59,7 @@ export class LoginComponent implements OnInit {
           this.GetTokenDecoded(this.token.token);
           if(localStorage.getItem("userrole") == "1")
           {
-            this.router.navigate(['addmember']);
+            this.router.navigate(['searchmember']);
           }
           else{
             this.router.navigate(['member']);

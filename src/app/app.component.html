@@ -1,3 +1,48 @@
-<!-- <app-login></app-login> -->
-<!-- <app-register></app-register> -->
+<!-- <app-books-comp></app-books-comp> -->
+<!-- <app-login-comp></app-login-comp> -->
+<!-- <app-author-comp></app-author-comp> -->
+
+<nav class="navbar navbar-expand-lg text-uppercase fixed-top" style="background-color: rgba(22, 182, 245, 0.932);" id="mainNav">
+    <div class="container">
+        
+        <h4 class="navbar-brand" style="color: white;font-family: 'Font Awesome 5 Free';font-weight:501;font-size: 25px;" href="">HealthCare Member Portal</h4>
+        <!-- <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button> -->
+        <!-- <div *ngIf="loginDetails == null" class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item mx-0 mx-lg-1"><a class="navbar-brand" [routerLink]="['/register']"
+                        class="nav-link py-3 px-0 px-lg-3 rounded">Register</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="navbar-brand" [routerLink]="['/login']"
+                        class="nav-link py-3 px-0 px-lg-3 rounded" href="">Login</a></li>
+            </ul>
+        </div> -->
+        <div *ngIf="loginDetails != null " class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <div class="form-group row">
+                    <div class='col-md-5'>
+                        <p class="nav-link py-3 px-0 px-lg-3 rounded " style="color: #097905;font-weight: 500;">Welcome {{userName}} !</p>
+                    </div>
+                    <div *ngIf="userType == '1'" class="col-md-5" style="color: #110df3;">
+                        <li class="nav-item mx-0 mx-lg-1 "><a class="navbar-brand" style="color: #110df3;font-weight: 500;" [routerLink]="['/addmember']"
+                                class="nav-link py-3 px-0 px-lg-3 rounded" href="">Add Member</a></li>
+                    </div>
+                    <!-- <div *ngIf="userType == 'Reader'" class="col-md-4">
+                        <li class="nav-item mx-0 mx-lg-1 "><a class="navbar-brand" [routerLink]="['/payment']"
+                                class="nav-link py-3 px-0 px-lg-3 rounded" href="">Payments</a></li>
+                    </div> -->
+                    <div class="col-md-2" style="color: #110df3;">
+                        <li class="nav-item mx-0 mx-lg-1 "><a class="navbar-brand" style="color: #110df3;font-weight: 500;" [routerLink]="['/login']"
+                                class="nav-link py-3 px-0 px-lg-3 rounded" (click)="Logout()" href="">Logout</a></li>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
 <router-outlet></router-outlet>
