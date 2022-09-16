@@ -7,13 +7,14 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class PhysicianService {
-
+  //baseUrl = 'https://hcmauthenticationapi.azure-api.net/user';
+  baseUrl = 'https://hcmuser.azurewebsites.net';
   constructor(private http:HttpClient) { }
   getAllPhysicians():Observable<Physicians[]>{
-    return this.http.get<Physicians[]>('https://localhost:7247/api/Physician');
+    return this.http.get<Physicians[]>(this.baseUrl + '/api/Physician');
   }
 
   AssignPhysician(assignPhysician:AssignPhysician):Observable<AssignPhysician[]>{
-    return this.http.put<AssignPhysician[]>('https://localhost:7247/api/Physician',assignPhysician);
+    return this.http.put<AssignPhysician[]>(this.baseUrl + '/api/Physician',assignPhysician);
   }
 }
