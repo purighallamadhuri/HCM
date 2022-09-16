@@ -7,59 +7,48 @@
     <div class="cards-container">
         <div class="cards-form">
             <!-- [formGroup]="search" -->
-            <form class="form" >
+            <form class="form">
                 <div class="searchfields">
-                    <div class="mb-2">
+                    <div class="mb-2" *ngIf="!showFiledsBasedOnRole">
                         <label>Member Id :</label>
-                        <input type="text" class="inputfield" [ngModelOptions]="{standalone: true}" style="width: 300px; text-align: center;" placeholder="Enter MemberId"
+                        <input type="text" [disabled]="true" class="inputfield" id="memberid" [ngModelOptions]="{standalone: true}" name="memberid" style="width: 300px; text-align: left;" placeholder="Enter MemberId"
                             [(ngModel)]="searchmembers.MemberId">
                     </div>
-                    <div class="mb-2">
+                    <div class="mb-2" *ngIf="showFiledsBasedOnRole">
+                        <label>Member Id :</label>
+                        <input type="text" class="inputfield" id="memberid" name="memberid" [ngModelOptions]="{standalone: true}" style="width: 300px; text-align: left;" placeholder="Enter MemberId"
+                            [(ngModel)]="searchmembers.MemberId">
+                    </div>
+                    <div class="mb-2" *ngIf="showFiledsBasedOnRole">
                         <label>First Name :</label>
-                        <input type="text" class="inputfield" [ngModelOptions]="{standalone: true}" style="width: 300px;text-align: center;" placeholder="Enter First name"
+                        <input type="text" class="inputfield" [ngModelOptions]="{standalone: true}" style="width: 300px;text-align: left;" placeholder="Enter First name"
                             [(ngModel)]="searchmembers.FirstName">
-                        <!-- <div *ngIf="submitted && !notTheSame"
-                            class="validation-message">
-                            Both First and Last names are required.
-                        </div> -->
                     </div>
-                    <div class="mb-2">
+                    <div class="mb-2" *ngIf="showFiledsBasedOnRole">
                         <label>Last Name :</label>
-                        <input type="text" class="inputfield" [ngModelOptions]="{standalone: true}" style="width: 300px;text-align: center;" placeholder="Enter Last Name"
+                        <input type="text" class="inputfield" [ngModelOptions]="{standalone: true}" style="width: 300px;text-align: left;" placeholder="Enter Last Name"
                             [(ngModel)]="searchmembers.LastName">
-                        <!-- <div *ngIf="submitted && !notTheSame"
-                            class="validation-message">
-                            Both First and Last names are required.
-                        </div> -->
                     </div>
-                    <div class="mb-2" *ngIf="PhysicianDetails.length > 0">
+                    <div class="mb-2" *ngIf="showFiledsBasedOnRole">
                         <label>Physician : </label>
-                        <select class="inputfield" [ngModelOptions]="{standalone: true}" style="margin-left: 20px;" id="physician" name="physician" 
+                        <select class="inputfield" [ngModelOptions]="{standalone: true}" style="margin-left: 20px;text-align: left;" id="physician" name="physician" 
                          [(ngModel)]="searchmembers.PhysicianId">
                             <option *ngFor="let p of PhysicianDetails" value={{p.physicianId}}>
                                 {{p.physicianName}}
                             </option>
-                            <!-- <option value="1">John</option>
-                            <option value="2">Hari</option>
-                            <option value="3">Mittal</option>
-                            <option value="4">Patrick</option>
-                            <option value="5">Mark</option>
-                            <option value="6">Jessica</option>
-                            <option value="7">Mary</option>
-                            <option value="8">Stacy</option> -->
                         </select>
                     </div>
-                    <div class="mb-2">
+                    <div class="mb-2" *ngIf="showFiledsBasedOnRole">
                         <label>Claim Id :</label>
   
-                        <input type="text" class="inputfield" [ngModelOptions]="{standalone: true}" style="margin-left: 30px;" placeholder="Enter ClaimId"
+                        <input type="text" class="inputfield" [ngModelOptions]="{standalone: true}" style="margin-left: 30px;text-align: left;" placeholder="Enter ClaimId"
                             [(ngModel)]="searchmembers.ClaimId">
                     </div>
                     <div class="form-group">
-                        <button class="btn" style="background-color: grey; color: white;"
+                        <button class="btn" style="background-color: grey; color: white;margin-left: 70px;"
                             (click)="Cancel()">Cancel</button>
                         &nbsp;
-                        <button class="btn btn-primary" (click)="onSubmit()">Register</button>
+                        <button class="btn btn-primary" (click)="onSubmit()">Search</button>
                     </div>
                     </div>
                     </form>
@@ -114,21 +103,27 @@
                     <tr *ngFor="let search of searchMemberResult">
                         
                         <td>{{search.MemberId}}</td>
-        
                         <td>{{search.FirstName}}</td>
                         <td>{{search.LastName}}</td>
                         <td>{{search.PhysicianName}}</td>
                         <td>{{search.ClaimId}}</td>
                         <td>{{search.ClaimAmount}}</td>
-                        <td>{{search.ClaimDate}}</td>
-                        <td>
+                        <td>{{search.ClaimDate | date: 'MM-dd-yyyy'}}</td>
+                        <td ><input *ngIf="search.ClaimId == null" type="checkbox" (onchange)="getRow(search)" (click)="getRowData(search)" /></td>
+                        <!-- <td>
                             <button class="btn btn-primary" [routerLink] = "['/memberclaim',search.MemberId]">
                             Submit Claim
                             </button>
-                        </td>
+                        </td> -->
                     </tr>
                 
               </table>
+              <br>
+              <div *ngIf="searchMemberResult?.length > 0">
+              <button class="btn btn-primary" (click)="CheckData()">
+                Submit Claim
+                </button>
+                </div>
         </div>
     </div>
 </div>

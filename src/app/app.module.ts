@@ -42,10 +42,11 @@ import { SearchmemberComponent } from './searchmember/searchmember.component';
        {path:'login',component : LoginComponent},
        {path:'oldreg',component : RegisterComponent},
        {path:'addmember',component : AddmemberComponent},
-       {path:'memberclaim/:memberid',component : MemberclaimComponent},
+       {path:'memberclaim',component : MemberclaimComponent},
        {path:'register',component : RegistercompComponent},
        {path:'assign',component : AssignphysicianComponent},
-       {path:'searchmember',component : SearchmemberComponent}
+       {path:'searchmember',component : SearchmemberComponent},
+       {path:'searchmember/:Id',component : SearchmemberComponent}
     ]),
   ],
    providers: [{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService,HttpClientModule,DatePipe],

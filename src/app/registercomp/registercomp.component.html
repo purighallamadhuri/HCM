@@ -23,7 +23,7 @@
 
                     <div class="mb-2">
                         <label>Password :</label>
-                        <input type="text" class="form-control" placeholder="Password"
+                        <input type="password" class="form-control" placeholder="Password"
                             [(ngModel)]="userdetails.Password" formControlName="password">
                         <div *ngIf="submitted && register.get('password')?.hasError('required')"
                             class="validation-message">
@@ -41,11 +41,11 @@
                     <div class="mb-2">
                         <label>UserType : </label>
                         <select class="form-control" formControlName="UserType" [(ngModel)]="userdetails.UserType">
-                            <option value=''>Select</option>
-                            <option value="1">Admin</option>
-                            <option value="2">Member</option>
+                            <option value=0>Select</option>
+                            <option value=1>Admin</option>
+                            <option value=2>Member</option>
                         </select>
-                        <div *ngIf="submitted && register.get('UserType')?.hasError('required')"
+                        <div *ngIf="submitted && register.get('UserType')?.value == 0"
                             class="validation-message">
                             UserType is required.
                         </div>

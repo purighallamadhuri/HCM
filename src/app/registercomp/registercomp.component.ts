@@ -46,7 +46,7 @@ result:any
     this.register = this.formbuilder.group({
       UserName: ['', [Validators.required,Validators.minLength(5)]],
       password:['',[Validators.required,Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,15}$")]],
-      UserType:['',Validators.required],
+      UserType:[0,Validators.required],
     })
     this.member = this.formbuilder.group({
       firstname: ['',Validators.required],
@@ -64,13 +64,11 @@ result:any
     this.memberService.AddUser(this.userdetails).subscribe(
       response=>
       {
-        console.log(response);
-        this.toaster.success("Registration Success!!", "Success");
+        this.toaster.success("User Registered Successfully!!", "Success");
         this.router.navigate(['login']);
       },
       error =>{
-        console.log("error")
-        this.toaster.error("Registration Failed!!", "Failed");
+        this.toaster.error("User Registration Failed!!", "Failed");
       }
     )
   }
@@ -87,30 +85,15 @@ onSubmit(){
       {
         console.log(response);
         this.result=response;
-        console.log(this.result.result);
-        if(this.result.result == "Entered user already exists in the system"){
-          this.toaster.error(this.result.result, "Failed");
+        console.log(this.result);
+        if(this.result == "Entered user already exists in the system"){
+          this.toaster.error(this.result, "Failed");
         }
         else{
           this.showmemmfield =true;
           this.showloginflds =false;
           this.submitted=false;
         }
-        // this.toaster.success("Registration Successful!!", "Success");
-        // this.router.navigate(['login']);
-        // if(response[0] != null){
-        //   console.log(response[0]);
-        //   this.toaster.error("User already exists in the system", "Failed");
-        //   //this.router.navigate(['login']);
-        //   //this.router.navigate(['assign'], { state: { example: this.userdetails.MemberId } });
-        //   //window.confirm("User already exists in the system");
-        //   //this.openModal(#template,response[0].MemberId);
-        // }
-        // else{
-        //   this.showmemmfield =true;
-        //   this.showloginflds =false;
-        //   //this.toaster.success("Registration Successful!!", "Success");
-        // }
       },
       error =>{
         console.log("error")
@@ -170,8 +153,12 @@ Signin(){
   this.router.navigate(['login']);
 }
 Cancel(){
+  this.showmemmfield=false;
+  this.showloginflds=true;
   this.register.reset();
-  this.router.navigate(['register']);
+  this.member.reset();
+  window.location.reload();
+  //this.router.navigate(['register']);
 }
 
 }

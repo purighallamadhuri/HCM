@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.RemoveSessionVariables();
   }
 
   GetTokenDecoded(token:string) {
@@ -46,7 +47,16 @@ export class LoginComponent implements OnInit {
 
     // console.log(this.username)
   }
-
+ RemoveSessionVariables(){
+  localStorage.removeItem("Token");
+    localStorage.removeItem("userrole");
+    localStorage.removeItem("memberid");
+    localStorage.removeItem("UserName");
+    localStorage.removeItem("SearchCriteria") 
+      localStorage.removeItem("SearchCriteriaData")
+    this.router.navigate(['login']);
+    this.memberService.updateSite.next(true);
+ }
   onSubmit(){
     console.log(this.loggedinuser);
     if(this.loggedinuser.UserName != '' && this.loggedinuser.Password != ''){
@@ -62,7 +72,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['searchmember']);
           }
           else{
-            this.router.navigate(['member']);
+            this.router.navigate(['searchmember']);
           }
           this.toaster.success("Login Successful!!", "Success");
         },

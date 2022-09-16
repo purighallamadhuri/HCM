@@ -69,17 +69,17 @@ export class AddmemberComponent implements OnInit {
   ngOnInit(): void {
 
     this.register = this.formbuilder.group({
-      UserName: ['', [Validators.required,Validators.minLength(5), Validators.min(1)]],
-      password:['',[Validators.required, Validators.min(1),Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,15}$")]],
+      UserName: ['', [Validators.required,Validators.minLength(5)]],
+      password:['',[Validators.required,Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,15}$")]],
     })
     this.member = this.formbuilder.group({
-      firstname: ['',Validators.required, Validators.min(1)],
-      lastname: ['',Validators.required, Validators.min(1)],
-      dob:['',Validators.required, Validators.min(1)],
-      address:['',Validators.required, Validators.min(1)],
-      state:['',Validators.required, Validators.min(1)],
-      Email:['',Validators.required, Validators.min(1),Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")],
-      Physician:['',Validators.required, Validators.min(1)],
+      firstname: ['',Validators.required],
+      lastname: ['',Validators.required],
+      dob:['',Validators.required],
+      address:['',Validators.required],
+      state:['',Validators.required],
+      EmailId:['',Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")],
+      Physician:[0,Validators.required],
 
     })
     this.GetAllPhysicians()
@@ -87,6 +87,11 @@ export class AddmemberComponent implements OnInit {
   result:any
   AssignPhysician(assignphysician:any){
 
+  }
+  SelectChange(event:any){
+    let idx = event.target.value;
+    console.log('id:', idx);
+    this.member.controls['Physician'].clearValidators();
   }
   GetAllPhysicians(){
     this.physicianService.getAllPhysicians().subscribe(
@@ -141,7 +146,7 @@ if (!this.member.invalid) {
     {
       console.log(response);
       this.toaster.success("Registration Success!!", "Success");
-      this.router.navigate(['login']);
+      this.router.navigate(['searchmember']);
     },
     error =>{
       console.log("error")
@@ -219,6 +224,7 @@ Signin(){
 }
 Cancel(){
   this.register.reset();
+  window.location.reload();
   //this.router.navigate(['register']);
 }
 

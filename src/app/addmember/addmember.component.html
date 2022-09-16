@@ -104,7 +104,8 @@
                         <div class="mb-2">
                             <label>DOB :</label>
                             <input type="date" class="form-control" [max]="todaydate" formControlName="dob"
-                                [(ngModel)]="userdetails.DOB">
+                                [(ngModel)]="userdetails.DOB" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+                                <!-- <input type="text" [(ngModel)]="userdetails.DOB" class="form-control" onfocus="(this.type='date')"  id="date" [max]="todaydate" formControlName="dob" required> -->
                             <div *ngIf="submitted && member.get('dob')?.hasError('required')"
                                 class="validation-message">
                                 DOB is required.
@@ -112,14 +113,14 @@
                         </div>
 
                         <div class="mb-2">
-                            <label>Email :</label>
-                            <input type="text" class="form-control" placeholder="Email" formControlName="Email"
+                            <label>Email Id :</label>
+                            <input type="text" class="form-control" placeholder="Email" formControlName="EmailId"
                                 [(ngModel)]="userdetails.Email">
-                            <div *ngIf="submitted && member.get('Email')?.hasError('required')"
+                            <div *ngIf="submitted && member.get('EmailId')?.hasError('required')"
                                 class="validation-message">
                                 Email is required.
                             </div>
-                            <div *ngIf="submitted && member.get('Email')?.hasError('pattern')"
+                            <div *ngIf="submitted && member.get('EmailId')?.hasError('pattern')"
                                 class="validation-message">
                                 Entered Email is not valid.
                             </div>
@@ -151,14 +152,15 @@
                         </div>
                         <div class="mb-2">
                             <label>Physician : </label>
-                            <select class="form-control" formControlName="Physician" name="physician" [(ngModel)]="userdetails.PhysicianId"
+                            <select class="form-control" formControlName="Physician" (change)="SelectChange($event)" name="physician" [(ngModel)]="userdetails.PhysicianId"
                                 >
                                 <!-- <option *ngFor="let p of category" [value]="p.id">{{p.title}}</option> -->
+                                <option value=0>Select</option>
                                 <option *ngFor=" let p of PhysicianDetails" value="{{p.physicianId}}">
                                     {{p.physicianName}}
                                 </option>
                             </select>
-                            <div *ngIf="submitted && member.get('Physician')?.hasError('required')"
+                            <div *ngIf="submitted && member.get('Physician')?.value == 0"
                                 class="validation-message">
                                 Physician is required.
                             </div>

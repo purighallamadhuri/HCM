@@ -3,7 +3,21 @@
     background-color: rgba(22, 182, 245, 0.932);
     text-align: center;
 }
-
+a:active {
+  color: yellow;
+}
+a{
+  color:blue;
+  font-weight: 500;
+}
+a:link{
+  color:blue;
+  font-weight: 500;
+}
+a:hover{
+  color: red;
+  text-decoration: underline;
+}
   .innercard
   {
     width: 300px;

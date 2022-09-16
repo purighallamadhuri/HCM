@@ -1,1 +1,60 @@
-<p>membercomp works!</p>
+<div class="card shadow p-3 mb-5 bg-white rounded innercard">
+    <div class="card-header" style="text-align: center;border-color: rgba(22, 182, 245, 0.932);">
+        <h4>Claim Submission</h4>
+    </div>
+    <div style="height: 15px;"></div>
+    <div class="cards-container">
+        <div class="cards-form">
+            <form class="form" [formGroup]="addclaim">
+            <div class="mb-2">
+                <label style="text-align: center; margin-left: 50px">Member Id :</label> &nbsp;
+                <label> {{ this.MemberId }} </label>
+            </div>
+            <div class="mb-2">
+                <label>Claim Type : </label>
+                <select class="form-control" formControlName="ClaimType" [(ngModel)]="memberClaims.claimType">
+                    <option *ngFor=" let p of claimTypes" value={{p.id}}>
+                        {{p.claimType}}
+                    </option>
+                </select>
+                <div *ngIf="submitted && addclaim.get('ClaimType')?.hasError('required')" class="validation-message">
+                    Claim Type is required.
+                </div>
+            </div>
+            <div class="mb-2">
+                <label>Claim Amount :</label>
+                <input type="text" class="form-control" placeholder="Claim Amount" formControlName="ClaimAmount"
+                    [(ngModel)]="memberClaims.claimAmount">
+                <div *ngIf="submitted && addclaim.get('ClaimAmount')?.hasError('required')" class="validation-message">
+                    Amount is required.
+                </div>
+                <div *ngIf="submitted && addclaim.get('ClaimAmount')?.hasError('pattern')" class="validation-message">
+                    Amount should be greater than zero.
+                </div>
+            </div>
+            <div class="mb-2">
+                <label>Claim Date :</label>
+                <input type="date" class="form-control" [min]="todaydate" formControlName="ClaimDate"
+                    [(ngModel)]="memberClaims.claimDate">
+                <div *ngIf="submitted && addclaim.get('dob')?.hasError('required')" class="validation-message">
+                    DOB is required.
+                </div>
+            </div>
+            <div class="mb-2">
+                <label>Remarks :</label>
+                <textarea type="text" class="form-control" placeholder="Remarks" formControlName="Remarks"
+                    [(ngModel)]="memberClaims.remarks"></textarea>
+                <div *ngIf="submitted && addclaim.get('Remarks')?.hasError('required')" class="validation-message">
+                    Remarks is required.
+                </div>
+            </div>
+            <div style="height: 10px;"></div>
+            <div class="form-group">
+                <button class="btn" style="background-color: grey; color: white;" (click)="Cancel()">Cancel</button>
+                &nbsp;
+                <button class="btn btn-primary" (click)="Save()" [routerLink]="['/searchmember', 1]">Save</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
