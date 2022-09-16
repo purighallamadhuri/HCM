@@ -74,18 +74,12 @@ result:any
   }
 }
 onSubmit(){
-  // this.hide =true;
-  // this.showloginflds=false;
   this.submitted=true;
   if (!this.register.invalid) {
-    console.log(this.register.value)
-    console.log(this.userdetails);
     this.memberService.CheckUserExists(this.userdetails).subscribe(
       response=>
       {
-        console.log(response);
         this.result=response;
-        console.log(this.result);
         if(this.result == "Entered user already exists in the system"){
           this.toaster.error(this.result, "Failed");
         }
@@ -96,57 +90,10 @@ onSubmit(){
         }
       },
       error =>{
-        console.log("error")
         this.toaster.error("Registration Failed!!", "Failed");
       }
     )
   }
-  // else{
-  //   alert('invalid');
-  // }
-
-}
-
-OpenMemberFields(data:any){
-console.log(data.target.value);
-if(data.target.value==1){
-//this.hide=false;
-this.register.get("firstname")?.clearValidators();
-this.register.get("firstname")?.updateValueAndValidity();
-this.register.get("lastname")?.clearValidators();
-this.register.get("lastname")?.updateValueAndValidity();
-
-this.register.get("dob")?.clearValidators();
-this.register.get("dob")?.updateValueAndValidity();
-
-this.register.get("address")?.clearValidators();
-this.register.get("address")?.updateValueAndValidity();
-
-this.register.get("state")?.clearValidators();
-this.register.get("state")?.updateValueAndValidity();
-
-this.register.get("Email")?.clearValidators();
-this.register.get("Email")?.updateValueAndValidity();
-}else{
-  //this.hide=true;
-  this.register.get("firstname")?.setValidators([Validators.required,Validators.minLength(5)]);
-this.register.get("firstname")?.updateValueAndValidity();
-this.register.get("lastname")?.setValidators([Validators.required,Validators.minLength(5)]);
-this.register.get("lastname")?.updateValueAndValidity();
-
-this.register.get("dob")?.setValidators([Validators.required]);
-this.register.get("dob")?.updateValueAndValidity();
-
-this.register.get("address")?.setValidators([Validators.required]);
-this.register.get("address")?.updateValueAndValidity();
-
-this.register.get("state")?.setValidators([Validators.required]);
-this.register.get("state")?.updateValueAndValidity();
-
-this.register.get("Email")?.setValidators([Validators.required]);
-this.register.get("Email")?.updateValueAndValidity();
-}
-
 }
 
 Signin(){

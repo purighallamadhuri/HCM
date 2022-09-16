@@ -6,22 +6,6 @@
         <div style="height: 15px;"></div>
         <div class="cards-container">
             <div class="cards-form">
-                <!-- <form #form="ngForm" (ngSubmit)="onSubmit()">
-                    <div class="loginfields">
-                        <div class="form-group">
-                            <label for="">User Name : </label>
-                            <input type="text" placeholder="Please Enter Username" name="Username">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Password : </label>
-                            <input type="text" placeholder="Please Enter Password" name="Password">
-                        </div>
-                        <div style="height: 10px;"></div>
-                        <div class="form-group">
-                            <button class="btn btn-primary">Sign In</button>
-                        </div>
-                    </div>
-                </form> -->
 
                 <form class="form" (ngSubmit)="onSubmit()">
                     <div class="loginfields">
@@ -51,12 +35,6 @@
                                 <span *ngIf="submitted && password.errors">
                                     <label *ngIf="password.errors?.['required']" class="validation-message">Password
                                         is required.</label>
-
-                                   <!-- <label *ngIf="password.errors?.['pattern']" class="validation-message">Password
-                                        length should be minimum 8 and maximum 15 characters.It should contain at least
-                                        1 uppercase letter, 1 lowercase
-                                        letter and 1 number
-                                    </label> -->
                                 </span>
                             </div>
                         </div>
@@ -71,20 +49,6 @@
                 <div class="form-group loginfields">
                     <button class="btn btn-primary" (click) = "Register()">Register</button>
                 </div>
-
-
-
            </div>
-            <!-- <div class="cards-grid">
-        <div class="card-row" *ngFor="let card of cards">
-          <div class="card-row-details" (click)="populateForm(card)">
-            <span>{{ card.cardholderName }}</span>
-            <span>{{ card.cardNumber }}</span>
-          </div>
-          <div class="card-row-action">
-            <a (click)="deleteCard(card.id)"><i class="fa-solid fa-trash"></i></a>
-          </div>
-        </div>
-      </div> -->
         </div>
     </div>

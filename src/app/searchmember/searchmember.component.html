@@ -59,35 +59,6 @@
         <br>
         <div style="width:100%; align-items: center;">
 
-            <!-- <table style="border: 2px solid rgba(22, 182, 245, 0.932);" *ngIf="searchMemberResult.length">
-                <thead>
-                    <tr>
-                        <th> Member ID </th>
-                        <th> First Name </th>
-                        <th> Last Name </th>
-                        <th> Assigned Physician </th>
-                        <th> Claim ID </th>
-                        <th> Claim Amount </th>
-                        <th> Submitted Date </th>
-                        <th> Actions </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let search of searchMemberResult">
-                        
-                        <td>{{search.MemberId}}</td>
-        
-                        <td>{{search.FirstName}}</td>
-                        <td>{{search.LastName}}</td>
-                        <td>{{search.PhysicianName}}</td>
-                        <td>{{search.ClaimId}}</td>
-                        <td>{{search.ClaimAmount}}</td>
-                        <td>{{search.ClaimDate}}</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table> -->
-
             <table class="table-responsive" style="width:100%;border: 2px solid rgba(22, 182, 245, 0.932);" *ngIf="searchMemberResult?.length > 0">
                 <tr>
                     <th> Member ID </th>
@@ -110,11 +81,7 @@
                         <td>{{search.ClaimAmount}}</td>
                         <td>{{search.ClaimDate | date: 'MM-dd-yyyy'}}</td>
                         <td ><input *ngIf="search.ClaimId == null" type="checkbox" (onchange)="getRow(search)" (click)="getRowData(search)" /></td>
-                        <!-- <td>
-                            <button class="btn btn-primary" [routerLink] = "['/memberclaim',search.MemberId]">
-                            Submit Claim
-                            </button>
-                        </td> -->
+                        
                     </tr>
                 
               </table>

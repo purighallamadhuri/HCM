@@ -25,27 +25,16 @@ export class LoginComponent implements OnInit {
   token: any;
   constructor(private router: Router,private memberService:MemberService,private toaster:ToastrService,private jwtHelper: JwtHelperService) { }
   
-
   ngOnInit(): void {
     this.RemoveSessionVariables();
   }
 
   GetTokenDecoded(token:string) {
-    console.log(this.jwtHelper.decodeToken(this.token.token))
     this.tokenPayload = this.jwtHelper.decodeToken(this.token.token);
-    console.log(this.tokenPayload);
-    console.log(this.tokenPayload.User_Type)
-    // this.userRole=this.tokenPayload.UserRole 
-    // this.username=this.tokenPayload.UserName 
      localStorage.setItem('userrole',this.tokenPayload.User_Type);
      localStorage.setItem('memberid',this.tokenPayload.sub);
      localStorage.setItem('UserName',this.tokenPayload.UserName);
      this.memberService.updateSite.next(true);
-    // localStorage.setItem('username',this.username)
-  
-    // console.log(localStorage.getItem('userrole'))
-
-    // console.log(this.username)
   }
  RemoveSessionVariables(){
   localStorage.removeItem("Token");
@@ -58,13 +47,11 @@ export class LoginComponent implements OnInit {
     this.memberService.updateSite.next(true);
  }
   onSubmit(){
-    console.log(this.loggedinuser);
     if(this.loggedinuser.UserName != '' && this.loggedinuser.Password != ''){
       this.memberService.UserLogin(this.loggedinuser).subscribe(
         response=>
         {
           this.token = response;
-          //console.log(this.token.token)
           localStorage.setItem("Token", this.token.token);
           this.GetTokenDecoded(this.token.token);
           if(localStorage.getItem("userrole") == "1")

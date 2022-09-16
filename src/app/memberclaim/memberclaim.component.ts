@@ -25,16 +25,16 @@ export class MemberclaimComponent implements OnInit {
   ) { 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
-  MemberSearchData:any=[]
+
+  MemberSearchData:any
   todaydate=this.datePipe.transform(new Date(), 'yyyy-MM-dd');
   ngOnInit(): void {
     //this.MemberId = this.activatedRoute.snapshot.params['memberid'];
-    
-    console.log(this.MemberId);
-    this.MemberSearchData=localStorage.getItem("Searchcheckeddata");
+    this.MemberSearchData=localStorage.getItem("Searchcheckeddata") || '{}';
     this.MemberSearchData=JSON.parse(this.MemberSearchData);
-    this.MemberId = this.MemberSearchData[0].MemberId;
-    console.log(this.MemberSearchData)
+    for(var item of Object.keys(this.MemberSearchData)){
+      this.MemberId = this.MemberSearchData[item];
+    }
     this.GetClaimTypes();
     this.addclaim = this.formbuilder.group({
       ClaimType : ['', [Validators.required]],
@@ -59,7 +59,6 @@ export class MemberclaimComponent implements OnInit {
   GetClaimTypes(){
     this.claimsService.getAllClaimTypes().subscribe(
       response=> {
-        console.log(response);
         this.claimTypes = response;
       }
     )
@@ -72,26 +71,14 @@ export class MemberclaimComponent implements OnInit {
   Save(){
     this.submitted = true;
     if (!this.addclaim.invalid) {
-    console.log(this.memberClaims);
     for(var list of this.MemberSearchData){
       this.MemberIdList.push(list.MemberId)
-      console.log(this.MemberIdList)
     }
-    //var i=0
     for(let i=0; i<this.MemberIdList.length;i++ ){
-      console.log(this.MemberIdList[i])
       this.memberClaims.memberId=this.MemberIdList[i]
-      //i = i + 1;
-      // this.MemSubmitClaimData=[];
-      // console.log(this.MemSubmitClaimData)
-      // console.log(this.memberClaims);
-      // this.MemSubmitClaimData.push(this.memberClaims)
-      // console.log(this.MemSubmitClaimData)
-      // this.FinalSubmitData.push(this.MemSubmitClaimData);
       this.claimsService.AddMemberClaims(this.memberClaims).subscribe(
       response=> {
         this.toaster.success("Claim Submitted Successfully.", "Success");
-        //this.router.navigate(['searchmember'])
         this.router.navigate(['searchmember']);
       },
       error=>{
@@ -99,17 +86,6 @@ export class MemberclaimComponent implements OnInit {
       }
     )
     }
-    console.log(this.FinalSubmitData)
-    
-    // this.claimsService.AddMemberClaims(this.memberClaims).subscribe(
-    //   response=> {
-    //     this.toaster.success("Claim Submitted Successfully.", "Success");
-    //     this.router.navigate(['searchmember'])
-    //   },
-    //   error=>{
-    //     this.toaster.error("Claim Submission Failed.", "Failed");
-    //   }
-    // )
     }
   }
 }

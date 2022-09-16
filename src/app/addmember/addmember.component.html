@@ -1,15 +1,4 @@
-<!-- <div class="card outercard">
- <div class="card-header heading" style="color: white;">
-        <h4>HealthCare Member Portal</h4>
-    </div> -->
-<!-- <div class='card-header heading' style="color: white;text-align: center;">
-        <div class="col-md-9">
-        <h4 style="margin-bottom:-30px;margin-left: 55px;">HealthCare Member Portal</h4>
-    </div>
-    <div class="col-md-3">
-        <button class="btn btn-primary" style="margin-left: 45px;" (click) = "Logout()">Logout</button>
-    </div>
-    </div>  -->
+
 <div class="card shadow p-3 mb-5 bg-white rounded innercard">
     <div class="card-header" style="text-align: center;border-color: rgba(22, 182, 245, 0.932);">
         <h4>Member Registration</h4>
@@ -48,20 +37,6 @@
                             It should contain at least 1 uppercase, 1 lowercase, 1 number and 1 special characters
                         </div>
                     </div>
-
-
-                    <!-- <div class="mb-2">
-                            <label>UserType : </label>
-                            <select class="form-control" formControlName="UserType" [(ngModel)]="userdetails.UserType" (change)="OpenMemberFields($event)">
-                                <option value=''>Select</option>
-                                <option value="1">Admin</option>
-                                <option value="2">Member</option>
-                            </select>
-                            <div *ngIf="submitted && register.get('UserType')?.hasError('required')"
-                                class="validation-message">
-                                UserType is required.
-                            </div>
-                        </div> -->
                     <div class="form-group">
                         <button class="btn" style="background-color: grey; color: white;"
                             (click)="Cancel()">Cancel</button> &nbsp;
@@ -104,8 +79,9 @@
                         <div class="mb-2">
                             <label>DOB :</label>
                             <input type="date" class="form-control" [max]="todaydate" formControlName="dob"
-                                [(ngModel)]="userdetails.DOB" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
-                                <!-- <input type="text" [(ngModel)]="userdetails.DOB" class="form-control" onfocus="(this.type='date')"  id="date" [max]="todaydate" formControlName="dob" required> -->
+                                [(ngModel)]="userdetails.DOB" onfocus="(this.type='date')"
+                                onblur="if(!this.value)this.type='text'">
+                            <!-- <input type="text" [(ngModel)]="userdetails.DOB" class="form-control" onfocus="(this.type='date')"  id="date" [max]="todaydate" formControlName="dob" required> -->
                             <div *ngIf="submitted && member.get('dob')?.hasError('required')"
                                 class="validation-message">
                                 DOB is required.
@@ -152,16 +128,15 @@
                         </div>
                         <div class="mb-2">
                             <label>Physician : </label>
-                            <select class="form-control" formControlName="Physician" (change)="SelectChange($event)" name="physician" [(ngModel)]="userdetails.PhysicianId"
-                                >
+                            <select class="form-control" formControlName="Physician" (change)="SelectChange($event)"
+                                name="physician" [(ngModel)]="userdetails.PhysicianId">
                                 <!-- <option *ngFor="let p of category" [value]="p.id">{{p.title}}</option> -->
                                 <option value=0>Select</option>
                                 <option *ngFor=" let p of PhysicianDetails" value="{{p.physicianId}}">
                                     {{p.physicianName}}
                                 </option>
                             </select>
-                            <div *ngIf="submitted && member.get('Physician')?.value == 0"
-                                class="validation-message">
+                            <div *ngIf="submitted && member.get('Physician')?.value == 0" class="validation-message">
                                 Physician is required.
                             </div>
                         </div>
@@ -177,66 +152,7 @@
 
             </form>
             <hr>
-            <!-- <h6 class="loginfields">Already have an account?</h6>
-                <div class="form-group loginfields">
-                    <button class="btn btn-primary" (click)="Signin()">Sign In</button>
-                </div> -->
-
-
-
-        </div>
-        <!-- <div class="cards-grid">
-        <div class="card-row" *ngFor="let card of cards">
-          <div class="card-row-details" (click)="populateForm(card)">
-            <span>{{ card.cardholderName }}</span>
-            <span>{{ card.cardNumber }}</span>
-          </div>
-          <div class="card-row-action">
-            <a (click)="deleteCard(card.id)"><i class="fa-solid fa-trash"></i></a>
-          </div>
-        </div>
-      </div> -->
     </div>
 </div>
-<ng-template #template>
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">Payment Confirmation</h4>
-        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
-            <span aria-hidden="true" class="visually-hidden">
 
-            </span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <div>
-            <span>
-                <label>Note: Member you are trying to add already exists in the system. Please assign physician to this
-                    member.</label>
-            </span>
-            <div>
-                <label for="" style="margin-bottom: 5px;">Member Id : </label>
-                <input style="margin-bottom: 5px;" type="text" #phymemberid="ngModel"
-                    [ngModelOptions]="{standalone: true}" [(ngModel)]="assignphysician.MemberId" name="username"
-                    minlength="5" maxlength="20" required
-                    [ngClass]="{'invalid-textbox' :submitted && !phymemberid.valid }" />&nbsp;&nbsp;
-
-                <select style="margin-bottom: 5px;" class="fa" style="width: 78%;" [ngModelOptions]="{standalone: true}"
-                    #selectphysician="ngModel" name="physician" id="physician" [(ngModel)]='assignphysician.PhysicianId'
-                    required [ngClass]="{'invalid-textbox' :submitted && !selectphysician.valid }">
-                    <option value="1">John</option>
-                    <option value="2">Hari</option>
-                    <option value="3">Mittal</option>
-                    <option value="4">Patrick</option>
-
-                </select>
-
-            </div>
-            <div class="form-group" style="margin-bottom: 5px;">
-                <button class="btn" style="background-color: grey; color: white;"
-                    (click)='modalRef?.hide()'>Cancel</button> &nbsp;
-                <button class="btn btn-primary" (click)="AssignPhysician(assignphysician)">Submit</button>
-            </div>
-        </div>
-    </div>
-</ng-template>
 <!-- </div> -->

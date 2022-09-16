@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegistercompComponent } from './registercomp.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule, ReactiveFormsModule,FormBuilder,FormControl }   from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { DatePipe} from "@angular/common";
 
 describe('RegistercompComponent', () => {
   let component: RegistercompComponent;
@@ -8,7 +13,15 @@ describe('RegistercompComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegistercompComponent ]
+      declarations: [ RegistercompComponent ],
+      imports: [ 
+        RouterTestingModule ,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        ToastrModule.forRoot()
+      ],
+      providers:[FormBuilder,FormControl,DatePipe]
     })
     .compileComponents();
   });
