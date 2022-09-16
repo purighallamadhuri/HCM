@@ -7,19 +7,20 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MemberService {
-
+  //baseUrl = 'https://hcmauthenticationapi.azure-api.net/auth';
+  baseUrl = 'https://hcmauthentication.azurewebsites.net';
   constructor(private http:HttpClient) { }
   public updateSite = new BehaviorSubject<any>(false);
   UserLogin(loginuser: Login):Observable<Login[]>{
-    return this.http.post<Login[]>('https://localhost:7154/api/Authentication/Authenticate',loginuser);
+    return this.http.post<Login[]>(this.baseUrl + '/api/Authentication/Authenticate',loginuser);
 }
 AddUser(userDetails:User): Observable<Get_User[]>{
-  return this.http.post<Get_User[]>('https://localhost:7247/api/User/AddUsers',userDetails);
+  return this.http.post<Get_User[]>(this.baseUrl + '/api/User/AddUsers',userDetails);
 }
 CheckUserExists(userDetails:User): Observable<Get_User[]>{
-  return this.http.post<Get_User[]>('https://localhost:7247/api/User/CheckUserExists',userDetails);
+  return this.http.post<Get_User[]>(this.baseUrl + '/api/User/CheckUserExists',userDetails);
 }
 MemberSearch(searchmembers:SearchMembers): Observable<User[]>{
-  return this.http.post<User[]>('https://localhost:7247/api/User/SearchMembers',searchmembers);
+  return this.http.post<User[]>(this.baseUrl + '/api/User/SearchMembers',searchmembers);
 }
 }
