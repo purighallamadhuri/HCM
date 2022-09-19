@@ -1,54 +1,50 @@
+<div class="card shadow p-3 mb-5 bg-white rounded innercard">
+    <div class="card-header" style="text-align: center; border-color: rgba(22, 182, 245, 0.932);">
+        <h4>{{text}}</h4>
+    </div>
+    <div style="height: 15px;"></div>
+    <div class="cards-container">
+        <div class="cards-form">
 
-    <div class="card shadow p-3 mb-5 bg-white rounded innercard">
-        <div class="card-header" style="text-align: center; border-color: rgba(22, 182, 245, 0.932);">
-            <h4>Sign In</h4>
-        </div>
-        <div style="height: 15px;"></div>
-        <div class="cards-container">
-            <div class="cards-form">
-
-                <form class="form" (ngSubmit)="onSubmit()">
-                    <div class="loginfields">
-                        <div class="form-group">
-                            <label style="font-size: 15px; margin-bottom: 5px;">User Name :</label>&nbsp;
-                            <div>
-                                <input style="margin-bottom: 5px;" class="form-control" type="text" #username="ngModel" [(ngModel)]="loggedinuser.UserName" name="username"
-                                    placeholder="UserName" minlength="4" required
-                                    [ngClass]="{'invalid-textbox' :submitted && !username.valid }"/>
-                                <span *ngIf="submitted && username.errors">
-                                    <label *ngIf="username.errors?.['required']" class="validation-message">User Name
-                                        is required.</label>
-                                    <label *ngIf="username.errors?.['minlength']" class="validation-message">Enter
-                                        atleast 4 characters.</label>
-                                </span>
+            <form class="form" [formGroup]="fglogin">
+                <div class="loginfields">
+                    <div class="mb-2">
+                        <label style="font-size: 15px; margin-bottom: 5px;">User Name :</label>&nbsp;
+                        <div>
+                            <input type="text" class="form-control" placeholder="Enter UserName"
+                                formControlName="loginusername" [(ngModel)]="loggedinuser.UserName">
+                            <div *ngIf="submitted && fglogin.get('loginusername')?.hasError('required')"
+                                class="validation-message">
+                                User Name is required.
                             </div>
 
-                       </div>
-                        <div class="form-group">
-                            <label for="" style="font-size: 15px; margin-bottom: 5px;">Password : </label>
-                           
-                            <div>
-                                <input style="margin-bottom: 5px;" class="form-control" type="password" #password="ngModel" [(ngModel)]="loggedinuser.Password" name="password"
-                                    placeholder="Password" required maxlength="15"
-                                    minlength="8"
-                                    [ngClass]="{'invalid-textbox' :submitted && !password.valid }"/>
-                                <span *ngIf="submitted && password.errors">
-                                    <label *ngIf="password.errors?.['required']" class="validation-message">Password
-                                        is required.</label>
-                                </span>
-                            </div>
                         </div>
-                        <div style="height: 10px;"></div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">SIGN IN</button>
+
+                    </div>
+                    <div class="mb-2">
+                        <label for="" style="font-size: 15px; margin-bottom: 5px;">Password : </label>
+
+                        <div>
+                            <input type="password" class="form-control" placeholder="Enter Password"
+                                formControlName="loginpassword" [(ngModel)]="loggedinuser.Password">
+                            <div *ngIf="submitted && fglogin.get('loginpassword')?.hasError('required')"
+                                class="validation-message">
+                                User Name is required.
+
+                            </div>
                         </div>
                     </div>
-                </form>
-                <hr>
-                <h6 class="loginfields">New User?</h6>
-                <div class="form-group loginfields">
-                    <button class="btn btn-primary" (click) = "Register()">Register</button>
+                    <div style="height: 10px;"></div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" (click)="onSubmit()">SIGN IN</button>
+                    </div>
                 </div>
-           </div>
+            </form>
+            <hr>
+            <h6 class="loginfields">New User?</h6>
+            <div class="form-group loginfields">
+                <button class="btn btn-primary" (click)="Register()">Register</button>
+            </div>
         </div>
     </div>
+</div>

@@ -2,16 +2,16 @@ import { TestBed } from '@angular/core/testing';
 
 import { ClaimsService } from './claims.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MemberService } from './member.service';
 
-describe('ClaimsService', () => {
-  let service: ClaimsService;
+describe('MemberService', () => {
+  let service: MemberService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports:[HttpClientModule],
-      providers:[ClaimsService]
+      imports:[HttpClientModule]
     });
-    service = TestBed.inject(ClaimsService);
+    service = TestBed.inject(MemberService);
   });
 
   it('should be created', () => {

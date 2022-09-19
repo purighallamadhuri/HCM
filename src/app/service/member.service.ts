@@ -8,7 +8,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class MemberService {
   //baseUrl = 'https://hcmauthenticationapi.azure-api.net/auth';
-  baseUrl = 'https://hcmauthentication.azurewebsites.net';
+  //baseUrl = 'https://hcmauthentication.azurewebsites.net';
+  baseUrl = 'https://localhost:7154'
   constructor(private http:HttpClient) { }
   public updateSite = new BehaviorSubject<any>(false);
   UserLogin(loginuser: Login):Observable<Login[]>{

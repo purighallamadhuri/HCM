@@ -1,7 +1,7 @@
 
 <div class="card shadow p-3 mb-5 bg-white rounded innercard">
     <div class="card-header" style="text-align: center;border-color: rgba(22, 182, 245, 0.932);">
-        <h4>Member Registration</h4>
+        <h4>{{text}}</h4>
     </div>
     <div style="height: 15px;"></div>
     <div class="cards-container">
@@ -109,6 +109,10 @@
                             <div *ngIf="submitted && member.get('address')?.hasError('required')"
                                 class="validation-message">
                                 Address is required.
+                            </div>
+                            <div *ngIf="submitted && member.get('address')?.hasError('maxlength')"
+                                class="validation-message">
+                                Cannot enter more than 100 characters.
                             </div>
                         </div>
 

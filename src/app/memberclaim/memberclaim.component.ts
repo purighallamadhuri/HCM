@@ -12,6 +12,7 @@ import { DatePipe} from "@angular/common";
   styleUrls: ['./memberclaim.component.css']
 })
 export class MemberclaimComponent implements OnInit {
+  text= 'Claim Submission'
   MemberId:any
   addclaim:FormGroup= new FormGroup({});
   submitted: Boolean =false;
@@ -32,8 +33,9 @@ export class MemberclaimComponent implements OnInit {
     //this.MemberId = this.activatedRoute.snapshot.params['memberid'];
     this.MemberSearchData=localStorage.getItem("Searchcheckeddata") || '{}';
     this.MemberSearchData=JSON.parse(this.MemberSearchData);
-    for(var item of Object.keys(this.MemberSearchData)){
-      this.MemberId = this.MemberSearchData[item];
+    console.log(this.MemberSearchData)
+    for(var i=0; i< this.MemberSearchData.length;i++){
+      this.MemberId = this.MemberSearchData[i].MemberId;
     }
     this.GetClaimTypes();
     this.addclaim = this.formbuilder.group({

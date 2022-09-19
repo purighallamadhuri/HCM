@@ -8,7 +8,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class PhysicianService {
   //baseUrl = 'https://hcmauthenticationapi.azure-api.net/user';
-  baseUrl = 'https://hcmuser.azurewebsites.net';
+  //baseUrl = 'https://hcmuser.azurewebsites.net';
+  baseUrl='https://localhost:7247'
   constructor(private http:HttpClient) { }
   getAllPhysicians():Observable<Physicians[]>{
     return this.http.get<Physicians[]>(this.baseUrl + '/api/Physician');

@@ -4,6 +4,7 @@ import { Login } from '../Models/Users';
 import { MemberService } from '../service/member.service';
 import { ToastrService } from 'ngx-toastr';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +12,10 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  passwordpattern: string = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,15}$";
-  submitted = false;
-  usernamename: string = ''
-  passwords: string = ''
+  text='Sign In';
+  fglogin:FormGroup= new FormGroup({});
+  submitted :boolean= false;
+ 
   loginuser:Login[] = [];
   loggedinuser : Login = {
     UserName:'',
@@ -23,10 +23,20 @@ export class LoginComponent implements OnInit {
   }
   tokenPayload:any
   token: any;
-  constructor(private router: Router,private memberService:MemberService,private toaster:ToastrService,private jwtHelper: JwtHelperService) { }
+  currlogUser: any
+  constructor(private router: Router,
+    private memberService:MemberService,
+    private toaster:ToastrService,
+    private jwtHelper: JwtHelperService,
+    private formbuilder: FormBuilder
+    ) { }
   
   ngOnInit(): void {
     this.RemoveSessionVariables();
+    this.fglogin = this.formbuilder.group({
+      loginusername : ['', [Validators.required]],
+      loginpassword:['',[Validators.required]]
+    })
   }
 
   GetTokenDecoded(token:string) {
@@ -47,6 +57,8 @@ export class LoginComponent implements OnInit {
     this.memberService.updateSite.next(true);
  }
   onSubmit(){
+    this.submitted = true;
+    if (!this.fglogin.invalid) {
     if(this.loggedinuser.UserName != '' && this.loggedinuser.Password != ''){
       this.memberService.UserLogin(this.loggedinuser).subscribe(
         response=>
@@ -64,11 +76,12 @@ export class LoginComponent implements OnInit {
           this.toaster.success("Login Successful!!", "Success");
         },
         error =>{
-          this.toaster.error("Login Failed!!", "Failed");
+          this.toaster.error("Invalid Credentials!!", "Failed");
         }
       )
     }
-    this.submitted = true;
+  }
+    
   }
   Register(){
 this.router.navigate(['register'])

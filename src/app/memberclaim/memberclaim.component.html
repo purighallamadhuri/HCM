@@ -1,6 +1,6 @@
 <div class="card shadow p-3 mb-5 bg-white rounded innercard">
     <div class="card-header" style="text-align: center;border-color: rgba(22, 182, 245, 0.932);">
-        <h4>Claim Submission</h4>
+        <h4>{{text}}</h4>
     </div>
     <div style="height: 15px;"></div>
     <div class="cards-container">
@@ -52,7 +52,7 @@
             <div class="form-group">
                 <button class="btn" style="background-color: grey; color: white;" (click)="Cancel()">Cancel</button>
                 &nbsp;
-                <button class="btn btn-primary" (click)="Save()" [routerLink]="['/searchmember', 1]">Save</button>
+                <button class="btn btn-primary" (click)="Save()">Save</button>
             </div>
         </form>
         </div>

@@ -7,7 +7,7 @@
 
   .innercard
   {
-    width: 300px;
+    width: 280px;
     height: auto;
     margin-left:500px;
     margin-top: 85px;
@@ -24,7 +24,7 @@
   }
   .loginfields
   {
-    margin-left: 25px;
+    margin-left: 10px;
   }
   .validation-message{
     color: red;

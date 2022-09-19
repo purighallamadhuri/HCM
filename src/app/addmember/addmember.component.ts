@@ -14,7 +14,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms"
   styleUrls: ['./addmember.component.css']
 })
 export class AddmemberComponent implements OnInit {
-  
+  text ='Member Registration';
   register:FormGroup= new FormGroup({});
   member:FormGroup= new FormGroup({});
   submitted = false;
@@ -69,14 +69,15 @@ export class AddmemberComponent implements OnInit {
       UserName: ['', [Validators.required,Validators.minLength(5)]],
       password:['',[Validators.required,Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,15}$")]],
     })
+    //,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
     this.member = this.formbuilder.group({
-      firstname: ['',Validators.required],
-      lastname: ['',Validators.required],
-      dob:['',Validators.required],
-      address:['',Validators.required],
-      state:['',Validators.required],
-      EmailId:['',Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")],
-      Physician:[0,Validators.required],
+      firstname: ['',[Validators.required,Validators.minLength(5)]],
+      lastname: ['',[Validators.required,Validators.minLength(5)]],
+      dob:['',[Validators.required]],
+      address:['',[Validators.required,Validators.maxLength(100)]],
+      state:['',[Validators.required]],
+      EmailId:['',[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      Physician:[0,[Validators.required]],
     })
     this.GetAllPhysicians()
   }
@@ -98,10 +99,11 @@ export class AddmemberComponent implements OnInit {
 Save(){
   this.submitted=true;
 if (!this.member.invalid) {
+  console.log(this.userdetails)
   this.memberService.AddUser(this.userdetails).subscribe(
     response=>
     {
-      this.toaster.success("Registration Success!!", "Success");
+      this.toaster.success("Registration Successful!!", "Success");
       this.router.navigate(['searchmember']);
     },
     error =>{
@@ -117,8 +119,9 @@ if (!this.register.invalid) {
     response=>
     {
       this.result=response;
-      if(this.result.result == "Entered user already exists in the system"){
-        this.toaster.error(this.result.result, "Failed");
+      console.log(this.result)
+      if(this.result == "Entered user already exists in the system"){
+        this.toaster.error(this.result, "Failed");
       }
       else{
         this.showmemmfield =true;

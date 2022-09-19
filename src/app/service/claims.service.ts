@@ -8,7 +8,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class ClaimsService {
   //baseUrl = 'https://hcmauthenticationapi.azure-api.net/claims';
-  baseUrl = 'https://hcmclaimssubmission.azurewebsites.net';
+  //baseUrl = 'https://hcmclaimssubmission.azurewebsites.net';
+  baseUrl='https://localhost:7139'
   constructor(
     private http:HttpClient
   ) { }

@@ -12,6 +12,7 @@ import { DatePipe} from "@angular/common";
   styleUrls: ['./registercomp.component.css']
 })
 export class RegistercompComponent implements OnInit {
+  text ='User Registration'
   register:FormGroup= new FormGroup({});
   member:FormGroup= new FormGroup({});
   submitted = false;
@@ -49,12 +50,12 @@ result:any
       UserType:[0,Validators.required],
     })
     this.member = this.formbuilder.group({
-      firstname: ['',Validators.required],
-      lastname: ['',Validators.required],
-      dob:['',Validators.required],
-      address:['',Validators.required],
-      state:['',Validators.required],
-      Email:['',Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")],
+      firstname: ['',[Validators.required,Validators.minLength(5)]],
+      lastname: ['',[Validators.required,Validators.minLength(5)]],
+      dob:['',[Validators.required]],
+      address:['',[Validators.required,Validators.maxLength(100)]],
+      state:['',[Validators.required]],
+      Email:['',[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
     })
   }
   Save(){

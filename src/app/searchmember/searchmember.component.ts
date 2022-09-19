@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./searchmember.component.css']
 })
 export class SearchmemberComponent implements OnInit {
+  text='Member Search'
   search: FormGroup = new FormGroup({});
   submitted: Boolean = false
   notTheSame: Boolean = false
