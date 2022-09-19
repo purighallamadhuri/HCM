@@ -56,7 +56,7 @@ describe('LoginComponent', () => {
   it('should call onSubmit method',() => {
     fixture.detectChanges();
     spyOn(component,'onSubmit');
-   el=fixture.debugElement.query(By.css('button')).nativeElement;
+   el=fixture.debugElement.queryAll(By.css('button'))[0].nativeElement;
    el.click();
    expect(component.onSubmit).toHaveBeenCalled();
   });

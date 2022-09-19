@@ -63,6 +63,14 @@ describe('MemberclaimComponent', () => {
    expect(component.Save).toHaveBeenCalledTimes(0);
   });
 
+  it('should call cancel method',() => {
+    fixture.detectChanges();
+    spyOn(component,'Cancel');
+   el=fixture.debugElement.queryAll(By.css('button'))[0].nativeElement;
+   el.click();
+   expect(component.Cancel).toHaveBeenCalled();
+  });
+
   it('form should be invalid`',() =>
   {
     component.addclaim.controls['ClaimType'].setValue('');

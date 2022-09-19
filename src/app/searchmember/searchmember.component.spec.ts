@@ -51,6 +51,23 @@ describe('SearchmemberComponent', () => {
     component.onSubmit();
     expect(component.submitted).toBeTruthy();
   });
+
+  it('should call save method',() => {
+    fixture.detectChanges();
+    spyOn(component,'onSubmit');
+   el=fixture.debugElement.queryAll(By.css('button'))[1].nativeElement;
+   el.click();
+   expect(component.onSubmit).toHaveBeenCalled();
+  });
+
+  it('should call cancel method',() => {
+    fixture.detectChanges();
+    spyOn(component,'Cancel');
+   el=fixture.debugElement.queryAll(By.css('button'))[0].nativeElement;
+   el.click();
+   expect(component.Cancel).toHaveBeenCalled();
+  });
+
   it('form should be valid`',() =>
   {
     component.search.controls['Memberid'].setValue('');
